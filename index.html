@@ -4,12 +4,13 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Raksha Bandhan, Shreya! ✨</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     * { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
+    
     body {
-      background: radial-gradient(circle at center, #800016 0%, #200005 100%);
+      background: radial-gradient(circle at center, #900C3F 0%, #2A0812 100%);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -17,91 +18,197 @@
       align-items: center;
       padding: 20px;
       overflow-x: hidden;
+      position: relative;
     }
+
+    /* Floating Particles Background */
+    .particle {
+      position: absolute;
+      pointer-events: none;
+      animation: floatUp 8s infinite linear;
+      opacity: 0.6;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(105vh) scale(0.5) rotate(0deg); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+    }
+
+    /* 3D Glassmorphism Card Container */
     .card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1.5px solid rgba(255, 215, 0, 0.4);
-      border-radius: 24px;
-      padding: 30px;
+      border-radius: 28px;
+      padding: 35px 25px;
       max-width: 480px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 0 15px rgba(255,215,0,0.1);
       display: none;
-      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .active { display: block; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      transform-style: preserve-3d;
+      perspective: 1000px;
     }
 
-    h1, h2 { color: #ffd700; font-family: 'Great Vibes', cursive; margin-bottom: 12px; font-size: 2.8rem; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
-    p { font-size: 15px; color: #f5e6d3; line-height: 1.6; margin-bottom: 20px; }
+    .card.active {
+      display: block;
+      animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
 
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.8) translateY(40px) rotateX(-15deg); }
+      100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); }
+    }
+
+    /* Animated Typography */
+    h1, h2 {
+      color: #ffd700;
+      font-family: 'Great Vibes', cursive;
+      margin-bottom: 12px;
+      font-size: 3.2rem;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.2);
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+      to { text-shadow: 0 0 22px rgba(255, 215, 0, 0.9), 0 0 35px rgba(255, 105, 180, 0.6); }
+    }
+
+    p { font-size: 15px; color: #f5e6d3; line-height: 1.6; margin-bottom: 22px; }
+
+    /* Interactive Animated Buttons */
     .btn {
-      background: linear-gradient(135deg, #ffd700, #ff9100);
-      color: #300008;
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      color: #2a0008;
       border: none;
-      padding: 13px 28px;
+      padding: 14px 30px;
       font-size: 15px;
-      font-weight: 600;
-      border-radius: 30px;
+      font-weight: 700;
+      border-radius: 50px;
       cursor: pointer;
       margin: 8px 4px;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 18px rgba(255, 215, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.35);
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); }
-    .btn-outline { background: transparent; border: 2px solid #ffd700; color: #ffd700; box-shadow: none; }
-    .btn-outline:hover { background: #ffd700; color: #300008; }
+    .btn:hover {
+      transform: translateY(-5px) scale(1.04);
+      box-shadow: 0 12px 28px rgba(255, 215, 0, 0.6);
+      background: linear-gradient(135deg, #fff200, #ff7700);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ffd700;
+      color: #ffd700;
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: #ffd700;
+      color: #2a0008;
+    }
 
-    /* Animated Rakhi SVG */
-    .rakhi-icon { width: 110px; height: 110px; margin: 15px auto; animation: rotateRakhi 15s linear infinite; filter: drop-shadow(0 0 8px rgba(255,215,0,0.5)); }
-    @keyframes rotateRakhi { 100% { transform: rotate(360deg); } }
+    /* 3D Rotating Glowing Rakhi Icon */
+    .rakhi-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin: 20px auto;
+    }
+    .rakhi-icon {
+      width: 100%;
+      height: 100%;
+      animation: rotateContinuous 12s linear infinite, pulseGlow 2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 12px rgba(255,215,0,0.7));
+    }
+    @keyframes rotateContinuous { 100% { transform: rotate(360deg); } }
+    @keyframes pulseGlow {
+      0% { transform: scale(0.95) rotate(0deg); }
+      100% { transform: scale(1.05) rotate(180deg); }
+    }
 
-    /* Photo Grid with Embedded Images */
-    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; max-height: 320px; overflow-y: auto; padding-right: 5px; }
-    .photo-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; border: 2px solid #ffd700; cursor: pointer; transition: 0.3s; }
-    .photo-grid img:hover { transform: scale(1.05); }
+    /* Photo Grid with Zoom Animation */
+    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; max-height: 320px; overflow-y: auto; padding-right: 5px; }
+    .photo-grid img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 215, 0, 0.6);
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .photo-grid img:hover {
+      transform: scale(1.08) rotate(2deg);
+      border-color: #fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Interactive Trait Cards */
+    ul.trait-list { text-align: left; list-style: none; margin-bottom: 20px; }
+    ul.trait-list li {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px 0;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border-left: 5px solid #ffd700;
+      font-size: 15px;
+      transition: transform 0.3s ease;
+      animation: slideInRight 0.5s ease forwards;
+    }
+    ul.trait-list li:hover { transform: translateX(8px); background: rgba(255, 255, 255, 0.18); }
 
     /* Modals */
     .modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; z-index: 100; backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.88); justify-content: center; align-items: center; z-index: 100; backdrop-filter: blur(10px);
     }
     .modal-content {
-      background: #3b000b; border: 2px solid #ffd700; border-radius: 20px; padding: 25px; max-width: 420px; width: 90%; text-align: left; position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      background: linear-gradient(145deg, #400010, #200008);
+      border: 2px solid #ffd700;
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 440px;
+      width: 90%;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      animation: modalPop 0.4s ease forwards;
     }
-    .close-btn { position: absolute; top: 12px; right: 18px; color: #ffd700; font-size: 24px; cursor: pointer; }
-
-    /* Trait List */
-    ul.trait-list { text-align: left; list-style: none; margin-bottom: 20px; }
-    ul.trait-list li { background: rgba(255, 255, 255, 0.08); margin: 8px 0; padding: 12px 16px; border-radius: 12px; border-left: 4px solid #ffd700; font-size: 14px; }
+    @keyframes modalPop {
+      0% { opacity: 0; transform: scale(0.7); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .close-btn { position: absolute; top: 14px; right: 20px; color: #ffd700; font-size: 28px; cursor: pointer; transition: 0.3s; }
+    .close-btn:hover { transform: scale(1.2) rotate(90deg); }
   </style>
 </head>
 <body>
 
+  <!-- Floating Particles Background Effect -->
+  <div id="particles"></div>
+
   <!-- Screen 1: Welcome Intro -->
   <div id="screen1" class="card active">
     <h1>Happy Raksha Bandhan</h1>
-    <svg class="rakhi-icon" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="42" fill="none" stroke="#ffd700" stroke-width="3" stroke-dasharray="6,4"/>
-      <circle cx="50" cy="50" r="30" fill="#d90429"/>
-      <circle cx="50" cy="50" r="14" fill="#ffd700"/>
-      <circle cx="50" cy="50" r="6" fill="#fff"/>
-    </svg>
-    <p>I crafted a special digital space dedicated to you, <b>Shreya</b>! ✨</p>
+    <div class="rakhi-wrapper">
+      <svg class="rakhi-icon" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="44" fill="none" stroke="#ffd700" stroke-width="2.5" stroke-dasharray="6,4"/>
+        <circle cx="50" cy="50" r="32" fill="#d90429"/>
+        <polygon points="50,22 58,42 78,50 58,58 50,78 42,58 22,50 42,42" fill="#ffd700"/>
+        <circle cx="50" cy="50" r="10" fill="#fff"/>
+      </svg>
+    </div>
+    <p>I built an interactive digital experience just for you, <b>Shreya</b>! ✨</p>
     <button class="btn" onclick="nextScreen('screen2')">Open Surprise ❤️</button>
   </div>
 
   <!-- Screen 2: Interactive Question -->
   <div id="screen2" class="card">
-    <h2>Wait! A Quick Question... 🤔</h2>
-    <p>Do you agree that you are the absolute best sister in the world?</p>
+    <h2>Wait! Quick Question... 🤔</h2>
+    <p>Do you agree that you are the absolute best sister in the entire universe?</p>
     <button class="btn" onclick="triggerConfetti(); nextScreen('screen4')">YES, DEFINITELY! ❤️</button>
     <button class="btn btn-outline" onclick="nextScreen('screen3')">NO 😜</button>
   </div>
@@ -116,21 +223,21 @@
   <!-- Screen 4: Main Navigation Hub -->
   <div id="screen4" class="card">
     <h2>Your Surprises 🎁</h2>
-    <p>Tap a section to explore!</p>
+    <p>Tap any section below to reveal its secret!</p>
     <button class="btn" style="width: 100%;" onclick="nextScreen('screenAward')">🏆 Best Sister Award</button>
     <button class="btn" style="width: 100%;" onclick="nextScreen('screenMemories')">📸 Our Memories Gallery</button>
     <button class="btn" style="width: 100%;" onclick="openLetter()">💌 Letter For My Sister</button>
-    <button class="btn" style="width: 100%;" onclick="nextScreen('screenTraits')">✨ What You Are To Me</button>
+    <button class="btn" style="width: 100%;" onclick="nextScreen('screenTraits')">✨ What You Mean To Me</button>
     <button class="btn" style="width: 100%;" onclick="nextScreen('screenCeremony')">🪔 Virtual Rakhi Ceremony</button>
   </div>
 
   <!-- Screen: Award -->
   <div id="screenAward" class="card">
     <h1>Best Sister Award</h1>
-    <div style="border: 2px dashed #ffd700; padding: 25px; border-radius: 18px; background: rgba(0,0,0,0.25);">
-      <p style="font-size: 16px; color: #ffd700;">Officially Presented To:</p>
-      <h2 style="font-size: 3.2rem; margin: 10px 0;">Shreya</h2>
-      <p>For endless laughter, secret keeping, being my support system, and being the best sister ever!</p>
+    <div style="border: 2px dashed #ffd700; padding: 25px; border-radius: 20px; background: rgba(0,0,0,0.3); transform: rotate(-1deg);">
+      <p style="font-size: 15px; color: #ffd700; text-transform: uppercase; letter-spacing: 1px;">Officially Presented To</p>
+      <h2 style="font-size: 3.5rem; margin: 10px 0; color: #fff; text-shadow: 0 0 15px #ffd700;">Shreya</h2>
+      <p style="margin-bottom: 0;">For endless laughter, secret keeping, being my ultimate support system, and being the best sister ever!</p>
     </div>
     <br>
     <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
@@ -139,26 +246,24 @@
   <!-- Screen: Photo Gallery -->
   <div id="screenMemories" class="card">
     <h2>Memories Gallery 📸</h2>
-    <p style="font-size: 13px;">Tap any photo to expand!</p>
+    <p style="font-size: 13px;">Tap any picture to expand!</p>
     <div class="photo-grid">
       <img src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Rakhi Celebration">
       <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Siblings Happiness">
       <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Sister Portrait">
       <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Fun Together">
-      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Smiles">
-      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Cherished Moments">
     </div>
     <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
   </div>
 
   <!-- Screen: Checklist -->
   <div id="screenTraits" class="card">
-    <h2>Shreya, You Are My...</h2>
+    <h2>Shreya, You Are...</h2>
     <ul class="trait-list">
-      <li>❤️ Lifeline & Best Friend</li>
-      <li>🗺️ Personal Google Maps</li>
-      <li>🍕 Food & Snack Stealer</li>
-      <li>🤫 Secret Keeper</li>
+      <li>❤️ My Lifeline & Best Friend</li>
+      <li>🗺️ My Personal Google Maps</li>
+      <li>🍕 The Ultimate Snack Stealer</li>
+      <li>🤫 Master Secret Keeper</li>
       <li>🌟 The Brightest Light in Our Family</li>
     </ul>
     <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
@@ -167,11 +272,11 @@
   <!-- Screen: Virtual Ceremony -->
   <div id="screenCeremony" class="card">
     <h2>Virtual Rakhi Ceremony 🪔</h2>
-    <p>Tap the Rakhi below to officially tie it and celebrate our bond!</p>
-    <div style="font-size: 70px; cursor: pointer; margin: 15px 0;" onclick="tieRakhi()">🌸</div>
-    <div id="rakhiMessage" style="display: none; color: #76ff03; font-weight: bold; font-size: 18px;">
+    <p>Tap the Rakhi below to tie it and celebrate!</p>
+    <div style="font-size: 80px; cursor: pointer; margin: 20px 0; transition: transform 0.3s;" onclick="tieRakhi()" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">🌸</div>
+    <div id="rakhiMessage" style="display: none; color: #76ff03; font-weight: bold; font-size: 19px; animation: popIn 0.5s forwards;">
       ✨ Happy Raksha Bandhan, Shreya! ✨<br>
-      <small style="color: #fff; font-weight: normal; font-size: 14px;">May your life always be full of happiness & joy!</small>
+      <small style="color: #fff; font-weight: 400; font-size: 14px;">May your life always be full of endless happiness & joy!</small>
     </div>
     <br>
     <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
@@ -182,10 +287,10 @@
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('letterModal')">&times;</span>
       <h2 style="text-align: center;">A Letter For You 💌</h2>
-      <p style="font-size: 14px; color: #fff;">
+      <p style="font-size: 15px; color: #f5e6d3; line-height: 1.7;">
         Dear Shreya,<br><br>
-        All those childhood fights, stealing each other's things, complaining about small stuff, and then laughing together a few minutes later — that is what makes our bond so special.<br><br>
-        Thank you for being my secret keeper, my guide, and my constant support. No matter how much we grow up, you will always be my favorite. Happy Raksha Bandhan! ❤️
+        All those childhood fights, stealing each other's snacks, complaining about small stuff, and then laughing together a few minutes later — that is what makes our bond irreplaceable.<br><br>
+        Thank you for being my secret keeper, my guide, and my constant support. No matter how much we grow up, you will always be my favorite person. Happy Raksha Bandhan! ❤️
       </p>
     </div>
   </div>
@@ -193,23 +298,37 @@
   <!-- Modal: Expanded Photo -->
   <div id="photoModal" class="modal" onclick="closeModal('photoModal')">
     <div style="max-width: 90%; max-height: 80%;">
-      <img id="expandedImg" src="" style="width: 100%; height: auto; border-radius: 15px; border: 3px solid #ffd700;">
+      <img id="expandedImg" src="" style="width: 100%; height: auto; border-radius: 20px; border: 3px solid #ffd700; box-shadow: 0 0 30px rgba(255,215,0,0.5);">
     </div>
   </div>
 
   <script>
+    // Generate Floating Background Particles
+    const particlesContainer = document.getElementById('particles');
+    const symbols = ['✨', '💖', '🌸', '⭐', '🎈'];
+    for (let i = 0; i < 18; i++) {
+      let p = document.createElement('div');
+      p.className = 'particle';
+      p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      p.style.animationDelay = (Math.random() * 5) + 's';
+      p.style.fontSize = (Math.random() * 15 + 15) + 'px';
+      particlesContainer.appendChild(p);
+    }
+
     function nextScreen(id) {
       document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
     function triggerConfetti() {
-      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
     }
 
     function tieRakhi() {
       document.getElementById('rakhiMessage').style.display = 'block';
-      confetti({ particleCount: 150, spread: 100, origin: { y: 0.5 } });
+      confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
     }
 
     function openLetter() { document.getElementById('letterModal').style.display = 'flex'; }
