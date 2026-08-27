@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Raksha Bandhan, Shreya! ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at center, #800016 0%, #200005 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border: 1.5px solid rgba(255, 215, 0, 0.4);
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      display: none;
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    h1, h2 { color: #ffd700; font-family: 'Great Vibes', cursive; margin-bottom: 12px; font-size: 2.8rem; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
+    p { font-size: 15px; color: #f5e6d3; line-height: 1.6; margin-bottom: 20px; }
+
+    .btn {
+      background: linear-gradient(135deg, #ffd700, #ff9100);
+      color: #300008;
+      border: none;
+      padding: 13px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 8px 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 18px rgba(255, 215, 0, 0.3);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); }
+    .btn-outline { background: transparent; border: 2px solid #ffd700; color: #ffd700; box-shadow: none; }
+    .btn-outline:hover { background: #ffd700; color: #300008; }
+
+    /* Animated Rakhi SVG */
+    .rakhi-icon { width: 110px; height: 110px; margin: 15px auto; animation: rotateRakhi 15s linear infinite; filter: drop-shadow(0 0 8px rgba(255,215,0,0.5)); }
+    @keyframes rotateRakhi { 100% { transform: rotate(360deg); } }
+
+    /* Photo Grid with Embedded Images */
+    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; max-height: 320px; overflow-y: auto; padding-right: 5px; }
+    .photo-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; border: 2px solid #ffd700; cursor: pointer; transition: 0.3s; }
+    .photo-grid img:hover { transform: scale(1.05); }
+
+    /* Modals */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; z-index: 100; backdrop-filter: blur(8px);
+    }
+    .modal-content {
+      background: #3b000b; border: 2px solid #ffd700; border-radius: 20px; padding: 25px; max-width: 420px; width: 90%; text-align: left; position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+    .close-btn { position: absolute; top: 12px; right: 18px; color: #ffd700; font-size: 24px; cursor: pointer; }
+
+    /* Trait List */
+    ul.trait-list { text-align: left; list-style: none; margin-bottom: 20px; }
+    ul.trait-list li { background: rgba(255, 255, 255, 0.08); margin: 8px 0; padding: 12px 16px; border-radius: 12px; border-left: 4px solid #ffd700; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 1: Welcome Intro -->
+  <div id="screen1" class="card active">
+    <h1>Happy Raksha Bandhan</h1>
+    <svg class="rakhi-icon" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#ffd700" stroke-width="3" stroke-dasharray="6,4"/>
+      <circle cx="50" cy="50" r="30" fill="#d90429"/>
+      <circle cx="50" cy="50" r="14" fill="#ffd700"/>
+      <circle cx="50" cy="50" r="6" fill="#fff"/>
+    </svg>
+    <p>I crafted a special digital space dedicated to you, <b>Shreya</b>! ✨</p>
+    <button class="btn" onclick="nextScreen('screen2')">Open Surprise ❤️</button>
+  </div>
+
+  <!-- Screen 2: Interactive Question -->
+  <div id="screen2" class="card">
+    <h2>Wait! A Quick Question... 🤔</h2>
+    <p>Do you agree that you are the absolute best sister in the world?</p>
+    <button class="btn" onclick="triggerConfetti(); nextScreen('screen4')">YES, DEFINITELY! ❤️</button>
+    <button class="btn btn-outline" onclick="nextScreen('screen3')">NO 😜</button>
+  </div>
+
+  <!-- Screen 3: Playful Lockout -->
+  <div id="screen3" class="card">
+    <h1 style="color: #ff4d6d;">WRONG ANSWER! 😤</h1>
+    <p>You don't get a choice! You have to accept it anyway.</p>
+    <button class="btn" onclick="triggerConfetti(); nextScreen('screen4')">FINE, I ACCEPT 😇</button>
+  </div>
+
+  <!-- Screen 4: Main Navigation Hub -->
+  <div id="screen4" class="card">
+    <h2>Your Surprises 🎁</h2>
+    <p>Tap a section to explore!</p>
+    <button class="btn" style="width: 100%;" onclick="nextScreen('screenAward')">🏆 Best Sister Award</button>
+    <button class="btn" style="width: 100%;" onclick="nextScreen('screenMemories')">📸 Our Memories Gallery</button>
+    <button class="btn" style="width: 100%;" onclick="openLetter()">💌 Letter For My Sister</button>
+    <button class="btn" style="width: 100%;" onclick="nextScreen('screenTraits')">✨ What You Are To Me</button>
+    <button class="btn" style="width: 100%;" onclick="nextScreen('screenCeremony')">🪔 Virtual Rakhi Ceremony</button>
+  </div>
+
+  <!-- Screen: Award -->
+  <div id="screenAward" class="card">
+    <h1>Best Sister Award</h1>
+    <div style="border: 2px dashed #ffd700; padding: 25px; border-radius: 18px; background: rgba(0,0,0,0.25);">
+      <p style="font-size: 16px; color: #ffd700;">Officially Presented To:</p>
+      <h2 style="font-size: 3.2rem; margin: 10px 0;">Shreya</h2>
+      <p>For endless laughter, secret keeping, being my support system, and being the best sister ever!</p>
+    </div>
+    <br>
+    <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
+  </div>
+
+  <!-- Screen: Photo Gallery -->
+  <div id="screenMemories" class="card">
+    <h2>Memories Gallery 📸</h2>
+    <p style="font-size: 13px;">Tap any photo to expand!</p>
+    <div class="photo-grid">
+      <img src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Rakhi Celebration">
+      <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Siblings Happiness">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Sister Portrait">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Fun Together">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Smiles">
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" onclick="expandPhoto(this.src)" alt="Cherished Moments">
+    </div>
+    <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
+  </div>
+
+  <!-- Screen: Checklist -->
+  <div id="screenTraits" class="card">
+    <h2>Shreya, You Are My...</h2>
+    <ul class="trait-list">
+      <li>❤️ Lifeline & Best Friend</li>
+      <li>🗺️ Personal Google Maps</li>
+      <li>🍕 Food & Snack Stealer</li>
+      <li>🤫 Secret Keeper</li>
+      <li>🌟 The Brightest Light in Our Family</li>
+    </ul>
+    <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
+  </div>
+
+  <!-- Screen: Virtual Ceremony -->
+  <div id="screenCeremony" class="card">
+    <h2>Virtual Rakhi Ceremony 🪔</h2>
+    <p>Tap the Rakhi below to officially tie it and celebrate our bond!</p>
+    <div style="font-size: 70px; cursor: pointer; margin: 15px 0;" onclick="tieRakhi()">🌸</div>
+    <div id="rakhiMessage" style="display: none; color: #76ff03; font-weight: bold; font-size: 18px;">
+      ✨ Happy Raksha Bandhan, Shreya! ✨<br>
+      <small style="color: #fff; font-weight: normal; font-size: 14px;">May your life always be full of happiness & joy!</small>
+    </div>
+    <br>
+    <button class="btn btn-outline" onclick="nextScreen('screen4')">⬅️ Back to Menu</button>
+  </div>
+
+  <!-- Modal: Letter -->
+  <div id="letterModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('letterModal')">&times;</span>
+      <h2 style="text-align: center;">A Letter For You 💌</h2>
+      <p style="font-size: 14px; color: #fff;">
+        Dear Shreya,<br><br>
+        All those childhood fights, stealing each other's things, complaining about small stuff, and then laughing together a few minutes later — that is what makes our bond so special.<br><br>
+        Thank you for being my secret keeper, my guide, and my constant support. No matter how much we grow up, you will always be my favorite. Happy Raksha Bandhan! ❤️
+      </p>
+    </div>
+  </div>
+
+  <!-- Modal: Expanded Photo -->
+  <div id="photoModal" class="modal" onclick="closeModal('photoModal')">
+    <div style="max-width: 90%; max-height: 80%;">
+      <img id="expandedImg" src="" style="width: 100%; height: auto; border-radius: 15px; border: 3px solid #ffd700;">
+    </div>
+  </div>
+
+  <script>
+    function nextScreen(id) {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function triggerConfetti() {
+      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+    }
+
+    function tieRakhi() {
+      document.getElementById('rakhiMessage').style.display = 'block';
+      confetti({ particleCount: 150, spread: 100, origin: { y: 0.5 } });
+    }
+
+    function openLetter() { document.getElementById('letterModal').style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    function expandPhoto(src) {
+      document.getElementById('expandedImg').src = src;
+      document.getElementById('photoModal').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
